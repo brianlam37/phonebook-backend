@@ -9,6 +9,12 @@ morgan.token('body', (req, res) =>{
     return JSON.stringify(req.body); 
 })
 
+const unknownEndpoint = (request, response) => {
+    response.status(404).send({ error: 'unknown endpoint' })
+}
+  
+app.use(unknownEndpoint)
+
 app.use( morgan((tokens, req, res) =>{
     return [
       tokens.method(req, res),
